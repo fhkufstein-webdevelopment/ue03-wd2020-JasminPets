@@ -11,21 +11,32 @@
 
 .btn {
     /* TODO */
+        @include transition-property(padding);
+        @include transition-duration(600ms);
+        @include transition-delay(500ms);
+        @include transition-timing-function(linear);
 
     &.ease-in {
         /* TODO */
+        @include transition-duration(1s);
+        @include transition-timing-function(ease-in);
     }
 
     &.ease-out {
         /* TODO */
+        @include transition-duration(1s);
+        @include transition-timing-function(ease-out);
     }
 
     &.ease-in-out {
         /* TODO */
+        @include transition-duration(1s);
+        @include transition-timing-function(ease-in-out);
     }
 
     &.green {
         /* TODO */
+        @include transition-property(all);
     }
 
     &.animation {
@@ -41,6 +52,9 @@
 body:hover .animation {
     animation-name:myanimation2;
     animation-duration:5s;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(0, 0.25, 0.50, 0.75);
+    animation-fill-mode: forwards;
 }
 
 
