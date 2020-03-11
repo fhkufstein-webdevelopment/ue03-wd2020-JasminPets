@@ -7,6 +7,7 @@ $red: #d9534f;
 $yellow: #f0ad4e;
 $green: #5cb85c;
 $grey: #d3d3d3;
+$margin: 10px 5px 10px 5px;
 
 body {
     -webkit-font-smoothing: antialiased;
@@ -25,7 +26,7 @@ body {
 input[type="text"],input[type="password"] {
     border:1px solid $black;
     padding:5px;
-    margin:10px 5px 10px 5px;
+    $margin;
 
     width: 180px;
 }
@@ -34,7 +35,7 @@ input[type="submit"] {
     border:1px solid $black;
     border-radius:0;
     background-color:$white;
-    margin:10px 5px 10px 5px;
+    $margin;
     cursor:pointer;
 }
 
@@ -53,7 +54,7 @@ label {
 }
 
 .feedback {
-    margin:10px 5px 10px 5px;
+    $margin;
     font-size:11px;
     font-weight:600;
 
@@ -72,37 +73,24 @@ label {
 }
 
 .strengthIndicator {
-    margin:10px 5px 10px 5px;
+    $margin;
     width: 200px;
-    padding:5px;
+    padding: 5px;
     height: 13px;
-    border:1px solid $grey;
-}
+    border: 1px solid $grey;
 
-.strengthIndicator::before {
-    content: "";
-    display: block;
-    height: 100%;
 
-    -moz-transition-property: width;
-    -o-transition-property: width;
-    -webkit-transition-property: width;
-    transition-property: width;
+    &::before {
+        content: "";
+        display: block;
+        height: 100%;
 
-    -moz-transition-delay: 0;
-    -o-transition-delay: 0;
-    -webkit-transition-delay: 0;
-    transition-delay: 0;
+        @include transition-property(width);
+        @include transition-delay (0);
+        @include transition-duration(250ms);
+        @include transition-timing-function(linear);
 
-    -moz-transition-duration: 250ms;
-    -o-transition-duration: 250ms;
-    -webkit-transition-duration: 250ms;
-    transition-duration: 250ms;
-
-    -moz-transition-timing-function: linear;
-    -o-transition-timing-function: linear;
-    -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
+    }
 }
 
 .passwordWrapper::after {
@@ -112,19 +100,25 @@ label {
     float: none;
 }
 
-.error .strengthIndicator::before {
-    width: 10%;
-    background-color: $red;
+.error .strengthIndicator{
+    &::before {
+        width: 10%;
+        background-color: $red;
+    }
 }
 
-.warning .strengthIndicator::before {
-    width: 60%;
-    background-color: $yellow;
+.warning .strengthIndicator {
+    &::before {
+        width: 60%;
+        background-color: $yellow;
+    }
 }
 
-.success .strengthIndicator::before {
-    width: 100%;
-    background-color: $green;
+.success .strengthIndicator {
+    &::before {
+        width: 100%;
+        background-color: $green;
+    }
 }
 
 .feedback.error, .feedback.warning, .feedback.success {
